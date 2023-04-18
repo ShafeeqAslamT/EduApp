@@ -7,6 +7,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTreeModule } from '@angular/material/tree';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const materialModules = [
   MatToolbarModule,
@@ -15,7 +16,8 @@ const materialModules = [
   MatSidenavModule,
   MatTableModule,
   MatPaginatorModule,
-  MatTreeModule
+  MatTreeModule,
+  MatDialogModule
 ];
 
 @NgModule({

@@ -1,8 +1,10 @@
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-catalogs',
@@ -13,8 +15,10 @@ export class CatalogsComponent implements OnInit, AfterViewInit {
   treeControl = new NestedTreeControl<CatalogNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<CatalogNode>();
   selectedNode!: CatalogNode;
-
-  constructor() {
+  modelRef: BsModalRef | undefined;
+  constructor(
+    private modalService: BsModalService
+  ) {
     this.dataSource.data = TREE_DATA;
   }
   ngOnInit(): void {
@@ -41,6 +45,10 @@ export class CatalogsComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource_tbl.paginator = this.paginator;
+  }
+
+  AddCategory(content: any) {
+    this.modelRef = this.modalService.show(content, { class: 'modal-lg' });
   }
 }
 interface CatalogNode {
